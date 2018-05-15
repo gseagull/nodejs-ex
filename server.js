@@ -103,6 +103,11 @@ initDb(function(err){
 });
 
 app.listen(port, ip);
+ app.on('connection', (socket) => {
+  console.log('Client connected');
+  socket.on('disconnect', () => console.log('Client disconnected'));
+});
+console.log('Password generator listening on ${ip} ${port}');
 console.log('Server running on http://%s:%s', ip, port);
 
 module.exports = app ;
